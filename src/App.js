@@ -1,10 +1,10 @@
 import { Container } from "@mui/material";
-import { Forms } from "./pages/Forms";
+import { FormDemo } from "./component/FormDemo";
 
 function App() {
   return (
     <Container maxWidth="xl">
-      <Forms />
+      <FormDemo />
     </Container>
   );
 }
