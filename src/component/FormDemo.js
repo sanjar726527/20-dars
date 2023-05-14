@@ -21,8 +21,8 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 export const FormDemo = () => {
   const [name, setName] = useState("");
-
   const [errorName, setErrorName] = useState(false);
+
   const [value, setValue] = useState("");
   const [event, setEvent] = useState(null);
 
@@ -32,7 +32,12 @@ export const FormDemo = () => {
     if (name.trim() === "") {
       setErrorName(true);
       return;
-    } else setErrorName(false);
+    } else {
+      setErrorName(false);
+      setName("");
+      setEvent(null);
+      setValue("");
+    }
   };
   const handleChange = (event) => {
     setValue(event.target.value);

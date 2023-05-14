@@ -1,50 +1,27 @@
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
-import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 
 export const Forms = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [number, setNumber] = useState(998);
+  const { register, handleSubmit } = useForm();
 
-  const [errorName, setErrorName] = useState(false);
-  const [errorEmail, setErrorEmail] = useState(false);
-  const [errorNumber, setErrorNumber] = useState(false);
-
-  
-
-  const sendForms = (e) => {
-    e.preventDefault();
-
-    if (name.trim() === "") {
-      setErrorName(true);
-      return;
-    } else setErrorName(false);
-    if (email.trim() === "") {
-      setErrorEmail(true);
-      return;
-    } else setErrorEmail(false);
-    if (number.trim() === "") {
-      setErrorNumber(true);
-      return;
-    } else setErrorNumber(false);
-    console.log(name, email, number);
+  const submit = (data) => {
+    console.log(data);
   };
+
   return (
     <Box sx={{ py: 3 }}>
       <Typography component={"h2"} variant="h2" sx={{ my: 2 }}>
         Forms
       </Typography>
-      <Box component="form" onSubmit={sendForms}>
+      <Box component="form" onSubmit={handleSubmit(submit)}>
         <Grid container spacing={2} sx={{ pb: 3 }}>
           <Grid xs={12} sm={6} lg={4} item>
             <TextField
               label="name"
               variant="outlined"
               fullWidth
-              value={name}
               type="text"
-              onChange={(e) => setName(e.target.value)}
-              error={errorName}
+              {...register("fullName")}
             />
           </Grid>
           <Grid xs={12} sm={6} lg={4} item>
@@ -52,21 +29,17 @@ export const Forms = () => {
               label="email"
               variant="outlined"
               fullWidth
-              value={email}
-              error={errorEmail}
-              onChange={(e) => setEmail(e.target.value)}
               type="email"
+              {...register("email")}
             />
           </Grid>
           <Grid xs={12} sm={6} lg={4} item>
             <TextField
               label="number"
               variant="outlined"
-              type="number"
+              type="text"
               fullWidth
-              value={number}
-              error={errorNumber}
-              onChange={(e) => setNumber(e.target.value)}
+              {...register("phone")}
             />
           </Grid>
         </Grid>
